@@ -1,0 +1,18 @@
+---
+database:
+  debug: true
+  host: localhost
+  port: 26257
+  user: root
+  password: root
+  dbname: ark_dev
+web:
+  port: 4000
+ark:
+  publickey: 000000000000000000000000000000000000000000000000000000000000000000
+  username: username0
+  passphrase: "/home/masato/Dev/go/src/github.com/masato25/smart_bridge_ark/config/keys/arkpassphrase"
+ether:
+  keyjsonpath: "/home/masato/Dev/go/src/github.com/masato25/smart_bridge_ark/config/keys/ethjsonkey"
+  displaymessage: Hello, We are Giraffe, have fun!
+...
