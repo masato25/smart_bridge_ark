@@ -1,0 +1,44 @@
+<html>
+  <head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js" integrity="sha384-feJI7QwhOS+hwpX2zkaeJQjeiwlhOP+SdQDqhgvvo1DsjtiSQByFdThsxO669S2D" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/assets/base.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <div class="container-fluid">
+        <ul class="navbar-nav" sytle="visibility: visible;">
+         <li class="nav-item active">
+           <a class="nav-link" href="#">Giraffe</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="/price_rate">Price_Rate</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link" href="#">Link</a>
+         </li>
+         <li class="nav-item">
+           <a class="nav-link disabled" href="#">Disabled</a>
+         </li>
+        </ul>
+        <!-- <ul class="nav navbar-nav navbar-right">
+          <li class="nav-item">
+            <img style="width: 50px;" src="https://www.shareicon.net/data/128x128/2016/04/13/491780_giraffe_159x298.png" />
+          </li>
+          <li class="nav-item">
+            <img style="width: 20px;" src="https://cdn.pixabay.com/photo/2016/03/31/19/25/cartoon-1294994_960_720.png" />
+          <li>
+          <li class="nav-item">
+            <img style="width: 50px;" src="https://cryptocoinsmarket.com/wp-content/uploads/2017/08/ark-welcome.png" />
+          </li>
+        </ul> -->
+      </div>
+    </nav>
+
+    <div class="container" id="container-body">
+      {{template "content" .}}
+    </div>
+  </body>
+</html>
