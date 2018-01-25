@@ -1,11 +1,15 @@
 package arklib
 
+import (
+	"math/big"
+)
+
 const SatoshiPerArk = 100000000
 
-func ToSatoshi(arkMount int) {
+func ToSatoshi(arkMount big.Float) {
 
 }
 
-func ToArk(satoshis int) {
+func ToArk(satoshis big.Float) {
 
 }
