@@ -10,7 +10,7 @@ import (
 	. "github.com/smartystreets/goconvey/convey"
 )
 
-func TestSpec(t *testing.T) {
+func TestArkService(t *testing.T) {
 	log.SetLevel(log.DebugLevel)
 	config.ReadConf("../../config")
 	setup.ConnDB()

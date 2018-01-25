@@ -16,4 +16,6 @@ ether:
   keyjsonpath: "./config/keys/ethjsonkey"
   displaymessage: Hello, We are Giraffe, have fun!
   keypassword: ""
+  ethereum_rpc_hist: "http://0.0.0.0:8888"
+  gasfee: 21000
 ...

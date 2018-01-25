@@ -1,6 +1,8 @@
 package config
 
 import (
+	"strconv"
+
 	"github.com/spf13/viper"
 )
 
@@ -52,10 +54,13 @@ func (self ViperConfig) SetArk() ViperConfig {
 
 func (self ViperConfig) SetEther() ViperConfig {
 	ethc := viper.GetStringMapString("ether")
+	gasfee, _ := strconv.Atoi(ethc["gasfee"])
 	self.Ether = Ether{
 		KeyPath:        ethc["keyjsonpath"],
 		DisplayMessage: ethc["displaymessage"],
 		KeyPassword:    ethc["keypassword"],
+		RPCHost:        ethc["ethereum_rpc_hist"],
+		GasFee:         int64(gasfee),
 	}
 	return self
 }
