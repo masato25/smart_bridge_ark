@@ -24,6 +24,7 @@ type Ark struct {
 type Ether struct {
 	KeyPath        string
 	DisplayMessage string
+	KeyPassword    string
 }
 
 func (self Ark) GetPassString() (content string, err error) {

@@ -55,6 +55,7 @@ func (self ViperConfig) SetEther() ViperConfig {
 	self.Ether = Ether{
 		KeyPath:        ethc["keyjsonpath"],
 		DisplayMessage: ethc["displaymessage"],
+		KeyPassword:    ethc["keypassword"],
 	}
 	return self
 }
