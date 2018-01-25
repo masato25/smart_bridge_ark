@@ -9,8 +9,9 @@ import (
 
 func TestSpec(t *testing.T) {
 	Init()
+	log.SetLevel(log.DebugLevel)
 	Convey("Get Rate from BTC to Ark", t, func() {
-		rate, err := GetRate("ark", "bitcoin")
+		rate, err := GetRate("ark", "ethereum")
 		So(err, ShouldBeEmpty)
 		log.Debug(rate)
 		log.Debug(rate.Rate(1))

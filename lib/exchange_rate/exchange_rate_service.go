@@ -18,9 +18,9 @@ var SupportCurrency maps.Map
 func Init() {
 	ReqClient = gorequest.New()
 	SupportCurrency = hashmap.New()
-	SupportCurrency.Put("bitcoin", 1)
-	SupportCurrency.Put("ethereum", 1)
-	SupportCurrency.Put("ark", 1)
+	SupportCurrency.Put("bitcoin", float64(0))
+	SupportCurrency.Put("ethereum", float64(0))
+	SupportCurrency.Put("ark", float64(0))
 	log.Info("init exchange_rate_service")
 }
 
@@ -45,8 +45,27 @@ func parseCurrencyRate(body gjson.Result) (rate float64, err error) {
 			return
 		}
 		rate = usdRate.Float()
+
 	}
 	return
+}
+
+type CoinObj struct {
+	Name  string  `json:"name"`
+	Price float64 `json:"price"`
+}
+
+func GetAllRate() []CoinObj {
+	var coinobj []CoinObj
+	for _, k := range SupportCurrency.Keys() {
+		reqUrl := fmt.Sprintf("%s/%s", apiUrl, k)
+		log.Debug(reqUrl)
+		_, body, _ := ReqClient.Get(reqUrl).End()
+		jbody := gjson.Parse(body)
+		rate, _ := parseCurrencyRate(jbody)
+		coinobj = append(coinobj, CoinObj{k.(string), rate})
+	}
+	return coinobj
 }
 
 func GetRate(fromCurrencyCode string, toCurrencyCode string) (rate Raging, err error) {
