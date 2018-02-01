@@ -20,7 +20,11 @@ func genDelegateParams() core.DelegateQueryParams {
 
 // https://blog.ark.io/devnet-node-setup-configuration-15f06328e8b7
 func Conn() {
-	arkclient = core.NewArkClient(nil).SetActiveConfiguration(core.DEVNET)
+	conf := config.MyConfig().Ark
+	if conf.DevNet == "dev" {
+		core.EnvironmentParams.Network.Type = core.DEVNET
+	}
+	arkclient = core.NewArkClientFromIP(conf.Host)
 }
 
 func GetVoters() {
@@ -38,7 +42,7 @@ func TransferTo(recepient string, amount int64) (err error) {
 		return
 	}
 	//create and send tx
-	tx := core.CreateTransaction(recepient, 1, "ARK-GOLang testing", content, "")
+	tx := core.CreateTransaction(recepient, amount, "ARK-GOLang testing", content, "")
 	payload := core.TransactionPayload{}
 	payload.Transactions = append(payload.Transactions, tx)
 	res, httpresponse, err := arkclient.PostTransaction(payload)

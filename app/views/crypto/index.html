@@ -1,23 +1,66 @@
 {{ define "content" }}
-<div class="row">
-  <h3>{{ .title }}</h3>
-</div>
-<div class="row">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>USD</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{ range $key, $value := .data }}
-        <tr>
-          <td>{{ $value.Name }}</td>
-          <td>{{ $value.Price }}</td>
-        </tr>
-      {{ end }}
-    </tbody>
-  </table>
+<script src="/assets/javascript/pricerate_indx.js" async></script>
+<div class="row justify-content-md-center" id="app">
+  <div class="col-10">
+    <h3>{{ .title }}</h3>
+  </div>
+  <div class="col-10" id="app" style="top: 30px;">
+    <el-row :gutter="20">
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>
+              BTC
+              <img style="width: 20px" src="/assets/image/Bitcoin-icon.png"></img>
+            </span>
+          </div>
+          <div>
+            @{bitcoin} <img style="width: 20px" src="/assets/image/tether-icon.png"></img>
+          </div>
+          <div>
+            @{(bitcoin/ark).toFixed(2)} <img style="width: 20px" src="/assets/image/ark-welcome.png"></img>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>
+              ARK
+              <img style="width: 20px" src="/assets/image/ark-welcome.png"></img>
+            </span>
+          </div>
+          <div>
+            @{ark} <img style="width: 20px" src="/assets/image/tether-icon.png"></img>
+          </div>
+          <div>
+            @{(ark/ark).toFixed(2)} <img style="width: 20px" src="/assets/image/ark-welcome.png"></img>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :span="8">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span>
+              ETHER
+              <img style="width: 20px" src="/assets/image/ETHEREUM-icon.png"></img>
+            </span>
+          </div>
+          <div>
+            @{ethereum} <img style="width: 20px" src="/assets/image/tether-icon.png"></img>
+          </div>
+          <div>
+            @{(ethereum/ark).toFixed(2)} <img style="width: 20px" src="/assets/image/ark-welcome.png"></img>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
+
+  <div class="col-10" style="display: none;">
+    {{ range $key, $value := .data }}
+      <input id={{ $value.Name }} value={{ $value.Price }}></input>
+    {{ end }}
+  </div>
 </div>
 {{ end }}

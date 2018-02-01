@@ -43,11 +43,15 @@ func (self ViperConfig) SetWeb() ViperConfig {
 }
 
 func (self ViperConfig) SetArk() ViperConfig {
-	arkc := viper.GetStringMapString("ark")
+	arkc := viper.GetStringMap("ark")
 	self.Ark = Ark{
-		PublicKey:      arkc["publickey"],
-		UserName:       arkc["username"],
-		PassPhrasePath: arkc["passphrase"],
+		Enable:         arkc["enable"].(bool),
+		Host:           arkc["host"].(string),
+		DevNet:         arkc["dev_net"].(string),
+		PublicKey:      arkc["publickey"].(string),
+		UserName:       arkc["username"].(string),
+		PassPhrasePath: arkc["passphrase"].(string),
+		Address:        arkc["address"].(string),
 	}
 	return self
 }
@@ -56,6 +60,8 @@ func (self ViperConfig) SetEther() ViperConfig {
 	ethc := viper.GetStringMapString("ether")
 	gasfee, _ := strconv.Atoi(ethc["gasfee"])
 	self.Ether = Ether{
+		Enable:         ethc["enable"] == "true",
+		Address:        ethc["address"],
 		KeyPath:        ethc["keyjsonpath"],
 		DisplayMessage: ethc["displaymessage"],
 		KeyPassword:    ethc["keypassword"],

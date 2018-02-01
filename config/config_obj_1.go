@@ -22,17 +22,23 @@ type Web struct {
 }
 
 type Ark struct {
+	Host           string
+	DevNet         string
 	PublicKey      string
 	UserName       string
 	PassPhrasePath string
+	Address        string
+	Enable         bool
 }
 
 type Ether struct {
+	Address        string
 	KeyPath        string
 	DisplayMessage string
 	KeyPassword    string
 	RPCHost        string
 	GasFee         int64
+	Enable         bool
 }
 
 func (self Ark) GetPassString() (content string, err error) {

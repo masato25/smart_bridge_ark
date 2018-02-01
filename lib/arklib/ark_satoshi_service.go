@@ -1,15 +1,11 @@
 package arklib
 
-import (
-	"math/big"
-)
+const SatoshiPerArk = float64(100000000)
 
-const SatoshiPerArk = 100000000
-
-func ToSatoshi(arkMount big.Float) {
+func ToSatoshi(arkMount int64) {
 
 }
 
-func ToArk(satoshis big.Float) {
-
+func ToArk(satoshis int64) float64 {
+	return float64(satoshis) / SatoshiPerArk
 }

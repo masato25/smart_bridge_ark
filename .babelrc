@@ -1,0 +1,9 @@
+{
+  "presets": ["es2015", "vue-app"],
+  "plugins":  [["component", [
+    {
+      "libraryName": "element-ui",
+      "styleLibraryName": "theme-default"
+    }
+  ], "transform-vue-jsx"]]
+}

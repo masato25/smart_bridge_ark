@@ -1,12 +1,15 @@
 package ether
 
-import "github.com/jinzhu/gorm"
+import "time"
 
 type EtherTransaction struct {
-	gorm.Model
-	FromAddr        string
-	ToAddr          string
-	TransactionHash string
-	Amount          float64
-	Data            string
+	ID        string `gorm:"type:varchar(100);primary_key"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time `sql:"index"`
+	// TransactionHash string `gorm:"type:varchar(100);unique_index`
+	FromAddr string
+	ToAddr   string
+	Amount   float64
+	Data     string
 }

@@ -1,4 +1,4 @@
-package lib
+package ethereum
 
 import (
 	"testing"
@@ -12,7 +12,7 @@ import (
 
 func TestEtehereumService(t *testing.T) {
 	log.SetLevel(log.DebugLevel)
-	config.ReadConf("../../config")
+	config.ReadConf("../../../config")
 	setup.ConnDB()
 	Convey("Test Ethereum net", t, func() {
 		ethereumrpc.Conn()

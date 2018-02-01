@@ -9,10 +9,15 @@ database:
 web:
   port: 4000
 ark:
+  enable: true
+  host: "0.0.0.0"
+  dev_net: "dev"
+  address: DKssssssssssssssssssssssssssssssss
   publickey: 000000000000000000000000000000000000000000000000000000000000000000
   username: username0
   passphrase: "./config/keys/arkpassphrase"
 ether:
+  enable: true
   keyjsonpath: "./config/keys/ethjsonkey"
   displaymessage: Hello, We are Giraffe, have fun!
   keypassword: ""
