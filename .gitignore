@@ -17,7 +17,10 @@
 /config/conf.yaml
 /config/keys
 Gopkg.lock
-/app/assets
+/app/assets/javascript
+/app/assets/*.woff
+/app/assets/*.ttf
+main
 
 # js 
 /node_modules
