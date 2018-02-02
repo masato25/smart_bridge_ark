@@ -17,6 +17,8 @@ Per-Install
   * `docker exec -it mycockroahdb ./cockroach sql --insecure`
   * `CREATE DATABASE ark_dev;`
   * ^D
+  * cd $GOPATH/src/github/masato25/smart_bridge_ark/app/setup
+  * `go test` -> this will create & reset all database tables for you.
 
 How to building
 
@@ -25,5 +27,4 @@ How to building
 * `go get ./...`
 * `yarn`
 * `npm run build`
-* `cd config && cp conf.yaml.exampl conf.yaml` and edit conf.yaml.
 * `go run main.go`
