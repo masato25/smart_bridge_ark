@@ -17,3 +17,9 @@
 /config/conf.yaml
 /config/keys
 Gopkg.lock
+/app/assets
+
+# js 
+/node_modules
+package-lock.json
+yarn.lock
