@@ -3,7 +3,7 @@
 <div class="row justify-content-md-center" id="app">
   <div class="col-10">
     <span style="display: inline-flex;">
-      <h3>Ethereum Explorers</h3>
+      <h3>Ethereum Explorer</h3>
     </span>
     <span style="position: relative;
       left: 20px;
@@ -14,6 +14,7 @@
         sync block
       </el-button>
     </span>
+    <span style="position: relative; left: 40px;">ETH transactions sent by Giraffe Delegate.</span>
   </div>
   <div class="col-10">
     <el-table
@@ -34,12 +35,12 @@
       </el-table-column>
       <el-table-column
         prop="Amount"
-        label="Amount"
+        label="Amount(ETH)"
         width="100">
       </el-table-column>
       <el-table-column
         prop="ID"
-        label="explorer"
+        label="Explorer"
         width="100">
         <template slot-scope="scope">
           <el-button
