@@ -2,9 +2,27 @@
 <script src="/assets/javascript/pricerate_indx.js" async></script>
 <div class="row justify-content-md-center" id="app">
   <div class="col-10">
+    <section>
+        <h3>Giraffe Delegate</h3>
+        <p></p>
+        <p>Giraffe Delegate is aimed to be a delegate providing SmartBridges service.</p>
+        <p>We plan to provide: 1. Contract execution service, using ARK to invoke Ethereum Smart Contract. 2. Cryptocurrencies exchange service, starting with ARK-to-ETH and ARK-to-Tokens(ERC20).</p>
+        <p>Please see our <a href="https://forum.ark.io/topic/829/giraffe-a-delegate-and-smartbridges-service-provider-both-rewards-and-service-profit-sharing-be-our-angel-voters-to-earn-3-times-profit/2">proposal</a> for detail explanation.</p>
+     </section>
+  </div>
+  <div class="col-10" style="padding-top: 20px">
+    <section>
+      <h3>How to use?</h3>
+      <p></p>
+      <p>This site demonstrates the ability to exchange ARK(testnet) to ETH(testnet) through SmartBridges.</p>
+      <p>You just need to send ARK(testnet) to <a href="https://dexplorer.ark.io/address/DKpAhq5QNVGKWLwnFFe9EJfQxFrfza4E8e">DKpAhq5QNVGKWLwnFFe9EJfQxFrfza4E8e</a>, and including SmartBridges Data: <code>{"eth": "your-ethereum-account"}</code>.</p>
+      <p>When we receive your ARK transaction, we will send ETH to your Ethereum acccount. The ETH amount is accroding to the instant exchange rate.</p>
+    </section>
+  </div>
+  <div class="col-10" style="padding-top: 20px">
     <h3>{{ .title }}</h3>
   </div>
-  <div class="col-10" id="app" style="top: 30px;">
+  <div class="col-10" id="app" style="padding-top: 10px">
     <el-row :gutter="20">
       <el-col :span="8">
         <el-card class="box-card">
@@ -42,7 +60,7 @@
         <el-card class="box-card">
           <div slot="header" class="clearfix">
             <span>
-              ETHER
+              ETH
               <img style="width: 20px" src="/assets/image/ETHEREUM-icon.png"></img>
             </span>
           </div>
