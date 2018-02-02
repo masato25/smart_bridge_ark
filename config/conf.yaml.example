@@ -23,4 +23,5 @@ ether:
   keypassword: ""
   ethereum_rpc_hist: "http://0.0.0.0:8888"
   gasfee: 21000
+  time_out_ms: 40000
 ...

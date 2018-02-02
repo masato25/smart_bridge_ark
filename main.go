@@ -29,6 +29,7 @@ func startService() {
 	if myconf.Ether.Enable {
 		log.Info("ethereum service will start")
 		ethereumrpc.Conn()
+		ethereumrpc.SetTimeOut()
 	} else {
 		log.Warn("ethereum service not enable")
 	}

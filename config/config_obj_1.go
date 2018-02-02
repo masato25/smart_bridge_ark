@@ -39,6 +39,7 @@ type Ether struct {
 	RPCHost        string
 	GasFee         int64
 	Enable         bool
+	TimeOutMS      int64
 }
 
 func (self Ark) GetPassString() (content string, err error) {

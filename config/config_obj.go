@@ -59,6 +59,7 @@ func (self ViperConfig) SetArk() ViperConfig {
 func (self ViperConfig) SetEther() ViperConfig {
 	ethc := viper.GetStringMapString("ether")
 	gasfee, _ := strconv.Atoi(ethc["gasfee"])
+	timeOutMs, _ := strconv.Atoi(ethc["time_out_ms"])
 	self.Ether = Ether{
 		Enable:         ethc["enable"] == "true",
 		Address:        ethc["address"],
@@ -66,6 +67,7 @@ func (self ViperConfig) SetEther() ViperConfig {
 		DisplayMessage: ethc["displaymessage"],
 		KeyPassword:    ethc["keypassword"],
 		RPCHost:        ethc["ethereum_rpc_hist"],
+		TimeOutMS:      int64(timeOutMs),
 		GasFee:         int64(gasfee),
 	}
 	return self

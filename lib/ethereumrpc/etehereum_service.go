@@ -22,6 +22,12 @@ import (
 var d = time.Now().Add(40000 * time.Millisecond)
 var client *ethclient.Client
 
+func SetTimeOut() {
+	conf := config.MyConfig().Ether
+	timeMs := conf.TimeOutMS
+	d = time.Now().Add(time.Duration(timeMs) * time.Millisecond)
+}
+
 func getKey() (keystoredkey *keystore.Key, err error) {
 	conf := config.MyConfig().Ether
 	var keyjsonstring string
