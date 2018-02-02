@@ -3,7 +3,7 @@ package ethereumrpc
 import (
 	"encoding/json"
 	"fmt"
-	"strings"
+	_ "strings"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/jinzhu/gorm"
