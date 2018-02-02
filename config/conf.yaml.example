@@ -10,7 +10,7 @@ web:
   port: 4000
 ark:
   enable: true
-  host: "0.0.0.0"
+  host: "167.114.29.55"
   dev_net: "dev"
   address: DKssssssssssssssssssssssssssssssss
   publickey: 000000000000000000000000000000000000000000000000000000000000000000

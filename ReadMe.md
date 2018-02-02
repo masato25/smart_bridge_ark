@@ -14,6 +14,9 @@ Per-Install
   * webpack
 * docker or cockroachdb node
   * if you have docker, you setup docker with `startdb.sh`
+  * `docker exec -it mycockroahdb ./cockroach sql --insecure`
+  * `CREATE DATABASE ark_dev;`
+  * ^D
 
 How to building
 
@@ -22,4 +25,5 @@ How to building
 * `go get ./...`
 * `yarn`
 * `npm run build`
+* `cd config && cp conf.yaml.exampl conf.yaml` and edit conf.yaml.
 * `go run main.go`
