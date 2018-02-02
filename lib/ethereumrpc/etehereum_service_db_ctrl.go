@@ -31,11 +31,8 @@ func SyncSendEth(tx ark.ArkTransaction) (err error) {
 	addr, err = checkEthInfo(ak2)
 	if err != nil {
 		log.Errorf("checkEthInfo error: %s", err.Error())
-		// will do noting with those errors
-		if strings.Contains(err.Error(), "unexpected end of JSON input") || strings.Contains(err.Error(), "invalid character 'g' looking for beginning of value") {
-			return nil
-		}
-		return
+		// will do noting for all parse errors
+		return nil
 	}
 	var send bool
 	send, err = checkEthSend(ak2, addr)
