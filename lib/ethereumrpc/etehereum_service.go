@@ -42,8 +42,8 @@ func getKey() (keystoredkey *keystore.Key, err error) {
 
 func SendRawTransaction(sendToAddr string, amount float64) (signTx *types.Transaction, err error) {
 	conf := config.MyConfig().Ether
-	ctx, _ := context.WithDeadline(context.Background(), d)
-	// defer cancel()
+	ctx, cancel := context.WithDeadline(context.Background(), d)
+	defer cancel()
 	var unlockedKey *keystore.Key
 	unlockedKey, err = getKey()
 	if err != nil {
@@ -70,8 +70,8 @@ func SendRawTransaction(sendToAddr string, amount float64) (signTx *types.Transa
 }
 
 func GetBalaceOf(address string) {
-	ctx, _ := context.WithDeadline(context.Background(), d)
-	// defer cancel()
+	ctx, cancel := context.WithDeadline(context.Background(), d)
+	defer cancel()
 	addr := common.HexToAddress(address)
 	blanceOf, err := client.BalanceAt(ctx, addr, nil)
 	etherAmount := (float64(blanceOf.Int64()) / float64(params.Ether))
@@ -86,8 +86,8 @@ func Conn() error {
 		return err
 	}
 	client = ethclient.NewClient(rpcclient)
-	ctx, _ := context.WithDeadline(context.Background(), d)
-	// defer cancel()
+	ctx, cancel := context.WithDeadline(context.Background(), d)
+	defer cancel()
 	netid, _ := client.NetworkID(ctx)
 	log.Debugf("Network id: %d", netid)
 	return nil
