@@ -70,6 +70,7 @@ import ElementUI from 'element-ui'
 import ifetch from '../../base/ifetch'
 import _ from "lodash"
 import moment from "moment"
+const Exploer = "https://rinkeby.etherscan.io/tx"
 
 export default {
   data() {
@@ -89,7 +90,7 @@ export default {
       })
     },
     openExplorer(id){
-      var win = window.open(`${arkExploer}/${id}`, '_blank');
+      var win = window.open(`${Exploer}/${id}`, '_blank');
       win.focus();
     },
     getData() {
