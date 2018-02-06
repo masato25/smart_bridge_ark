@@ -1,23 +1,6 @@
 {{ define "content" }}
 <script src="/assets/javascript/eth_js.js" async></script>
-<div class="row justify-content-md-center">
-  <div class="col-10">
-    <span style="display: inline-flex;">
-      <h3>Ethereum Explorer</h3>
-    </span>
-    <span style="position: relative;
-      left: 20px;
-      top: -5px;">
-      <el-button
-        type="success"
-        @click="syncBlock()" round>
-        sync block
-      </el-button>
-    </span>
-    <span style="position: relative; left: 40px;">ETH transactions sent by Giraffe Delegate.</span>
-  </div>
-  <div class="col-10" id="app">
-    <app></app>
-  </div>
+<div class="row justify-content-md-center" id="app">
+  <app></app>
 </div>
 {{ end }}
