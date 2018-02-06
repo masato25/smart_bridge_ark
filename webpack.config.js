@@ -8,8 +8,8 @@ module.exports = {
   cache: true,
   entry: {
     app: goStaticPath + "base/app.js",
-    eth_js: goStaticPath + "explorer/eth_js.js",
-    ark_js: goStaticPath + "explorer/ark_js.js",
+    eth_js: goStaticPath + "explorer/eth_js/eth_js.js",
+    ark_js: goStaticPath + "explorer/ark_js/ark_js.js",
     pricerate_indx: goStaticPath + "pricerate/indx.js",
   },
 

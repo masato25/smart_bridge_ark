@@ -1,9 +1,14 @@
 {
-  "presets": ["es2015", "vue-app"],
-  "plugins":  [["component", [
-    {
-      "libraryName": "element-ui",
-      "styleLibraryName": "theme-default"
-    }
-  ], "transform-vue-jsx"]]
+  "presets": ["es2015", "stage-0"],
+  "plugins":  [
+    [
+      "component", [
+        {
+          "libraryName": "element-ui",
+          "styleLibraryName": "theme-default"
+          }
+      ]
+    ],
+    "transform-runtime"
+  ]
 }
