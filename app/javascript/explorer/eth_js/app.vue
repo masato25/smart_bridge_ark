@@ -2,7 +2,7 @@
   <div class="row justify-content-md-center">
     <div class="col-10">
       <span style="display: inline-flex;">
-        <h3>Ethereum Explorer</h3>
+        <h3>Ethereum(Rinkeby) Explorer</h3>
       </span>
       <span style="position: relative;
         left: 20px;
