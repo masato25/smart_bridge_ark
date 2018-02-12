@@ -22,6 +22,16 @@ import (
 var d = time.Now().Add(40000 * time.Millisecond)
 var client *ethclient.Client
 
+func checkConn() {
+	ctx, cancel := context.WithDeadline(context.Background(), d)
+	defer cancel()
+	_, err := client.NetworkID(ctx)
+	if err != nil {
+		client = nil
+	}
+	Conn()
+}
+
 func SetTimeOut() {
 	conf := config.MyConfig().Ether
 	timeMs := conf.TimeOutMS
@@ -41,6 +51,7 @@ func getKey() (keystoredkey *keystore.Key, err error) {
 }
 
 func SendRawTransaction(sendToAddr string, amount float64) (signTx *types.Transaction, err error) {
+	checkConn()
 	conf := config.MyConfig().Ether
 	ctx, cancel := context.WithDeadline(context.Background(), d)
 	defer cancel()
@@ -70,6 +81,7 @@ func SendRawTransaction(sendToAddr string, amount float64) (signTx *types.Transa
 }
 
 func GetBalaceOf(address string) {
+	checkConn()
 	ctx, cancel := context.WithDeadline(context.Background(), d)
 	defer cancel()
 	addr := common.HexToAddress(address)
