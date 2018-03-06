@@ -10,6 +10,8 @@ module.exports = {
     app: goStaticPath + "base/app.js",
     eth_js: goStaticPath + "explorer/eth_js/eth_js.js",
     ark_js: goStaticPath + "explorer/ark_js/ark_js.js",
+    vote_js: goStaticPath + "delgates/vote_js/vote_js.js",
+    vote_profit_js: goStaticPath + "delgates//vote_profit_js/vote_profit_js.js",
     pricerate_indx: goStaticPath + "pricerate/indx.js",
   },
 

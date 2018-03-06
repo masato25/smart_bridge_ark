@@ -6,7 +6,9 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"github.com/masato25/smart_bridge_ark/app/model/ark"
+	"github.com/masato25/smart_bridge_ark/app/model/blocks"
 	"github.com/masato25/smart_bridge_ark/app/model/connections"
+	"github.com/masato25/smart_bridge_ark/app/model/delegate"
 	"github.com/masato25/smart_bridge_ark/app/model/ether"
 	"github.com/masato25/smart_bridge_ark/config"
 	log "github.com/sirupsen/logrus"
@@ -38,17 +40,24 @@ func ConnDB(migrate ...bool) (err error) {
 		}
 	}
 	db.Model(&connections.ArkEther{}).Related(&ark.ArkTransaction{}).Related(&ether.EtherTransaction{})
+	db.Model(&delegate.VoteProfit{}).Related(&delegate.Vote{}).Related(&blocks.Block{})
 	return
 }
 
 func Migration() {
-	db.DropTable(&ark.ArkTransaction{})
-	db.DropTable(&ether.EtherTransaction{})
-	db.DropTable(&connections.ArkEther{})
+	db.DropTableIfExists(&ark.ArkTransaction{})
+	db.DropTableIfExists(&ether.EtherTransaction{})
+	db.DropTableIfExists(&connections.ArkEther{})
+	db.DropTableIfExists(&blocks.Block{})
+	db.DropTableIfExists(&delegate.Vote{})
+	db.DropTableIfExists(&delegate.VoteProfit{})
 	db.AutoMigrate(
 		ark.ArkTransaction{},
 		ether.EtherTransaction{},
 		connections.ArkEther{},
+		blocks.Block{},
+		delegate.Vote{},
+		delegate.VoteProfit{},
 	)
 }
 
