@@ -65,7 +65,7 @@ func SendRawTransaction(sendToAddr string, amount float64) (signTx *types.Transa
 	sendToAddrComm := common.HexToAddress(sendToAddr)
 	nonce, _ := client.NonceAt(ctx, unlockedKey.Address, nil)
 	bdata := conf.DisplayMessage
-	tx := types.NewTransaction(nonce, sendToAddrComm, big.NewInt(int64(amount*params.Ether)), big.NewInt(conf.GasFee), big.NewInt(10*params.Shannon), []byte(bdata))
+	tx := types.NewTransaction(nonce, sendToAddrComm, big.NewInt(int64(amount*params.Ether)), uint64(conf.GasFee), big.NewInt(10*params.Shannon), []byte(bdata))
 	signTx, err = types.SignTx(tx, types.HomesteadSigner{}, unlockedKey.PrivateKey)
 	if err != nil {
 		log.Errorf("types.SignTx: %v", err)
