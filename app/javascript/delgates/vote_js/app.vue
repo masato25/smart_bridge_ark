@@ -4,6 +4,8 @@
       <span style="display: inline-flex;">
         <h3>Giraffe Voters</h3>
       </span>
+       <el-checkbox v-model="checked">show unvoter</el-checkbox>
+       <el-button type="success" @click="refresh">Refresh</el-button>
     </div>
     <div class="col-10">
       <el-table
@@ -66,6 +68,7 @@ export default {
     return {
       tableData: [],
       loading: true,
+      checked: false,
     }
   },
   mounted() {
@@ -77,7 +80,7 @@ export default {
       win.focus();
     },
     getData() {
-      ifetch("/api/v1/data/voters.json", "GET").then((response) => {
+      ifetch(`/api/v1/data/voters.json?filter=${this.checked}`, "GET").then((response) => {
         let data = response.data
         this.tableData = data
         this.loading = false
@@ -85,7 +88,10 @@ export default {
     },
     converTs(ts) {
       return moment(ts).format("YYYY-MM-DD HH:mm:ss")
-    }
+    },
+    refresh(){
+      this.getData()
+    },
   }
 }
 </script>
