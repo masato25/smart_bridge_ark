@@ -1,9 +1,9 @@
 package arklib
 
 import (
-	"github.com/labstack/gommon/log"
 	"github.com/masato25/ark-go/core"
 	"github.com/masato25/smart_bridge_ark/config"
+	log "github.com/sirupsen/logrus"
 )
 
 func GetTransactionsSender(senderId string) (resp *[]core.Transaction) {

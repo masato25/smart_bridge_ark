@@ -2,15 +2,16 @@ package explorer_controller
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/labstack/gommon/log"
 	"github.com/masato25/ark-go/core"
 	"github.com/masato25/smart_bridge_ark/app/model/blocks"
 	"github.com/masato25/smart_bridge_ark/app/model/delegate"
 	_ "github.com/masato25/smart_bridge_ark/app/model/ether"
 	"github.com/masato25/smart_bridge_ark/config"
 	"github.com/masato25/smart_bridge_ark/lib/arklib"
+	log "github.com/sirupsen/logrus"
 )
 
 func UpdateVoterController(c *gin.Context) {
@@ -82,11 +83,25 @@ func GetCreatedBlockNumber(c *gin.Context) {
 	return
 }
 
+type GetBlockInfoByTimeLimitInput struct {
+	TimestampLimit int64 `json:"timestamp" form:"timestamp"`
+	Fheight        int   `json:"height" form:"height"`
+}
+
 func GetBlockInfoByTimeLimit(c *gin.Context) {
-	// fheight := arklib.GetCurrentHeight()
-	fheight := 3720933
+	input := GetBlockInfoByTimeLimitInput{
+		1520056906,
+		3720933,
+	}
+	if err := c.Bind(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	fheight := input.Fheight
 	var timestampLimit int64
-	timestampLimit = 1520056906
+	timestampLimit = input.TimestampLimit
 	flag := false
 	respBody := []blocks.Block{}
 	for {
@@ -120,9 +135,25 @@ func GetBlockInfoByTimeLimit(c *gin.Context) {
 	return
 }
 
+type CalculatorEachBlockstInput struct {
+	TimestampLimit int64 `json:"timestamp" form:"timestamp"`
+}
+
 func CalculatorEachBlocks(c *gin.Context) {
+	var input CalculatorEachBlockstInput
+	if err := c.Bind(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
 	blockResults := []blocks.Block{}
-	db.Find(&blockResults)
+	if input.TimestampLimit == 0 {
+		db.Find(&blockResults)
+	} else {
+		etime := time.Unix(input.TimestampLimit, 0)
+		db.Where("updated_at <= ?", etime).Find(&blockResults)
+	}
 	for _, bot := range blockResults {
 		// btime := bot.CreatedAt
 		votes := []delegate.Vote{}
