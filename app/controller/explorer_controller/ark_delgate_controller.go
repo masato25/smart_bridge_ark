@@ -91,7 +91,8 @@ type GetBlockInfoByTimeLimitInput struct {
 func GetBlockInfoByTimeLimit(c *gin.Context) {
 	input := GetBlockInfoByTimeLimitInput{
 		1520056906,
-		3720933,
+		// default should be currenct height
+		arklib.GetCurrentHeight(),
 	}
 	if err := c.Bind(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
