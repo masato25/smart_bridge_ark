@@ -25,7 +25,7 @@ func UpdateVoterController(c *gin.Context) {
 			Status:  true,
 			Balance: vot.Balance,
 		}
-		db.Where("address = ?", Dvote.Address).FirstOrCreate(&Dvote)
+		db.Where("address = ?", Dvote.Address).Save(&Dvote)
 		collectAddress = append(collectAddress, Dvote.Address)
 	}
 	var selectUnVoter []delegate.Vote
