@@ -216,8 +216,9 @@ func CalculatorEachBlocks(c *gin.Context) {
 }
 
 type SetPayoutOKInput struct {
-	Stime int64 `json:"start_time" form:"start_time"`
-	Etime int64 `json:"until_time" form:"until_time"`
+	Stime  int64  `json:"start_time" form:"start_time" binding:"required"`
+	Etime  int64  `json:"until_time" form:"until_time" binding:"required"`
+	VoteId string `json:"vote_id" form:"vote_id" binding:"required"`
 }
 
 func SetPayoutOK(c *gin.Context) {
@@ -230,7 +231,7 @@ func SetPayoutOK(c *gin.Context) {
 	}
 	dhelp := delegate.VoteProfit{}
 	dt := db.Begin()
-	dt2 := dt.Table(dhelp.TableName()).Where("created_at >= ? AND created_at <= ?", time.Unix(inputs.Stime, 0), time.Unix(inputs.Etime, 0)).Update("payment", true)
+	dt2 := dt.Table(dhelp.TableName()).Where("created_at >= ? AND created_at <= ? AND vote_id = ?", time.Unix(inputs.Stime, 0), time.Unix(inputs.Etime, 0), inputs.VoteId).Update("payment", true)
 	if dt2.Error != nil {
 		dt.Rollback()
 		c.JSON(http.StatusBadGateway, gin.H{
