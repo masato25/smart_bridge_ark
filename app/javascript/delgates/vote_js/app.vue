@@ -20,7 +20,7 @@
           </template>
         </el-table-column>
         <el-table-column
-          prop="ID"
+          prop="address"
           label="Address">
         </el-table-column>
         <el-table-column
@@ -29,21 +29,21 @@
         </el-table-column>
         <el-table-column
           prop="status"
-          label="vote status">
+          label="status">
         </el-table-column>
         <el-table-column
           prop="weight"
           label="Weight">
         </el-table-column>
         <el-table-column
-          prop="ID"
+          prop="address"
           label="Profit"
           width="100">
           <template slot-scope="scope">
             <el-button
               size="mini"
               type="primary"
-              @click="openExplorer(scope.row.ID)">
+              @click="openExplorer(scope.row.address)">
               browse
             </el-button>
           </template>

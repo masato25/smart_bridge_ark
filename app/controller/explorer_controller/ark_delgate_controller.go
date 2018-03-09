@@ -1,6 +1,7 @@
 package explorer_controller
 
 import (
+	"fmt"
 	"net/http"
 	"time"
 
@@ -42,7 +43,7 @@ func UpdateVoterController(c *gin.Context) {
 type GetVoterControllerOuput struct {
 	Address string  `json:"address"`
 	Balance float64 `json:"balance"`
-	Status  bool    `json:"status"`
+	Status  string  `json:"status"`
 	Weight  float64 `json:"weight"`
 }
 
@@ -63,7 +64,7 @@ func GetVoterController(c *gin.Context) {
 		Arkbalance := acct.Balance
 		output[indx].Address = acct.Address
 		output[indx].Balance = Arkbalance
-		output[indx].Status = acct.Status
+		output[indx].Status = fmt.Sprintf("%v", acct.Status)
 		output[indx].Weight = float64((Arkbalance / totallBalance) * 100)
 	}
 	c.JSON(200, gin.H{
