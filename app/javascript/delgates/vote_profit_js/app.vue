@@ -4,6 +4,8 @@
       <span style="display: inline-flex;">
         <h3>Reward List</h3>
       </span>
+      <el-checkbox v-model="checked">show paid</el-checkbox>
+      <el-button type="success" @click="refresh">Refresh</el-button>
     </div>
     <div class="col-10">
       Earn totall reward: {{reward_sum}}
@@ -32,6 +34,13 @@
           prop="BlockID"
           label="BlockID">
         </el-table-column>
+        <el-table-column
+          prop="Payment"
+          label="Payment">
+          <template slot-scope="scope">
+            {{scope.row.Payment}}
+          </template>
+        </el-table-column>
       </el-table>
     </div>
   </div>
@@ -53,6 +62,7 @@ export default {
       address: "",
       loading: true,
       reward_sum: 0,
+      checked: false,
     }
   },
   created(){
@@ -73,7 +83,7 @@ export default {
       win.focus();
     },
     getData() {
-      ifetch(`/api/v1/data/profit/${this.address}`, "GET").then((response) => {
+      ifetch(`/api/v1/data/profit/${this.address}?showpaid=${this.checked}`, "GET").then((response) => {
         let data = response.data
         this.tableData = data.reward_per_blocks
         this.reward_sum = data.reward_sum
@@ -82,7 +92,10 @@ export default {
     },
     converTs(ts) {
       return moment(ts).format("YYYY-MM-DD HH:mm:ss")
-    }
+    },
+    refresh(){
+      this.getData()
+    },
   }
 }
 </script>

@@ -14,10 +14,11 @@ func Route(r *gin.Engine) {
 	r.GET("/data/eths", EthTransactions)
 	r.GET("/action/ark/sync", SyncArkTranactions)
 	r.GET("/action/eth/sync", SyncEthTranactions)
-	r.GET("/arks/update_voters", UpdateVoterController)
+	r.GET("/actoin/arks/update_voters", UpdateVoterController)
 	r.GET("/action/arks/sync_blocks", SyncNewBlocks)
 	r.GET("/action/arks/sync_block_with_time", GetBlockInfoByTimeLimit)
 	r.GET("/action/arks/count_rewards", CalculatorEachBlocks)
+	r.GET("/action/arks/set_payout_status", SetPayoutOK)
 
 	rapi := r.Group("/api/v1")
 	rapi.GET("/data/voters.json", GetVoterController)

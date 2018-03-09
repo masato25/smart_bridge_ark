@@ -189,7 +189,7 @@ func CalculatorEachBlocks(c *gin.Context) {
 		db.Find(&blockResults)
 	} else {
 		etime := time.Unix(input.TimestampLimit, 0)
-		db.Where("updated_at <= ?", etime).Find(&blockResults)
+		db.Where("updated_at >= ?", etime).Find(&blockResults)
 	}
 	for _, bot := range blockResults {
 		// btime := bot.CreatedAt
@@ -213,4 +213,34 @@ func CalculatorEachBlocks(c *gin.Context) {
 			db.Save(&mblock)
 		}
 	}
+}
+
+type SetPayoutOKInput struct {
+	Stime int64 `json:"start_time" form:"start_time"`
+	Etime int64 `json:"until_time" form:"until_time"`
+}
+
+func SetPayoutOK(c *gin.Context) {
+	inputs := SetPayoutOKInput{}
+	if err := c.Bind(&inputs); err != nil {
+		c.JSON(http.StatusBadGateway, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	dhelp := delegate.VoteProfit{}
+	dt := db.Begin()
+	dt2 := dt.Table(dhelp.TableName()).Where("created_at >= ? AND created_at <= ?", time.Unix(inputs.Stime, 0), time.Unix(inputs.Etime, 0)).Update("payment", true)
+	if dt2.Error != nil {
+		dt.Rollback()
+		c.JSON(http.StatusBadGateway, gin.H{
+			"error": dt2.Error,
+		})
+		return
+	}
+	dt.Commit()
+	c.JSON(http.StatusOK, gin.H{
+		"message": fmt.Sprintf("row affected %d", dt2.RowsAffected),
+	})
+	return
 }
