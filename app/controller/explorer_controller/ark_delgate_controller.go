@@ -39,11 +39,35 @@ func UpdateVoterController(c *gin.Context) {
 	return
 }
 
+type GetVoterControllerOuput struct {
+	Address string  `json:"address"`
+	Balance float64 `json:"balance"`
+	Status  bool    `json:"status"`
+	Weight  float64 `json:"weight"`
+}
+
 func GetVoterController(c *gin.Context) {
+	cFilter := c.GetBool("filter")
 	Dvote := []delegate.Vote{}
-	db.Where("status = ?", true).Find(&Dvote)
+	if !cFilter {
+		db.Where("status = ?", true).Find(&Dvote)
+	} else {
+		db.Find(&Dvote)
+	}
+	output := make([]GetVoterControllerOuput, len(Dvote))
+	var totallBalance float64
+	for _, acct := range Dvote {
+		totallBalance += acct.Balance
+	}
+	for indx, acct := range Dvote {
+		Arkbalance := acct.Balance
+		output[indx].Address = acct.Address
+		output[indx].Balance = Arkbalance
+		output[indx].Status = acct.Status
+		output[indx].Weight = float64((Arkbalance / totallBalance) * 100)
+	}
 	c.JSON(200, gin.H{
-		"data": Dvote,
+		"data": output,
 	})
 	return
 }

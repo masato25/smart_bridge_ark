@@ -24,8 +24,16 @@
           label="Address">
         </el-table-column>
         <el-table-column
-          prop="Balance"
+          prop="balance"
           label="balance">
+        </el-table-column>
+        <el-table-column
+          prop="status"
+          label="vote status">
+        </el-table-column>
+        <el-table-column
+          prop="weight"
+          label="Weight">
         </el-table-column>
         <el-table-column
           prop="ID"
