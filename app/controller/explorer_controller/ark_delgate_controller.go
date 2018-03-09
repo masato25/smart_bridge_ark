@@ -47,10 +47,21 @@ type GetVoterControllerOuput struct {
 	Weight  float64 `json:"weight"`
 }
 
+type GetVoterControllerInput struct {
+	Filter bool `json:"filter" form:"filter"`
+}
+
 func GetVoterController(c *gin.Context) {
-	cFilter := c.GetBool("filter")
+	var input GetVoterControllerInput
+	if err := c.Bind(&input); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	log.Debugf("[GetVoterController] filter: %v", input.Filter)
 	Dvote := []delegate.Vote{}
-	if !cFilter {
+	if !input.Filter {
 		db.Where("status = ?", true).Find(&Dvote)
 	} else {
 		db.Find(&Dvote)
